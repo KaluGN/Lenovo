@@ -1,4 +1,4 @@
-const painSearch = (parNumberimg, parNumberpdf, parNumber, pdfimage, modalImg, modalp, html) => {
+const painSearch = (parNumberimg, parNumberimgList,parNumberpdf, parNumber, pdfimage, modalImg, modalp, html) => {
   const divColum = document.createElement('div');
   divColum.setAttribute('class', 'col-md-6');
   divColum.setAttribute('value', parNumberpdf);
@@ -10,7 +10,7 @@ const painSearch = (parNumberimg, parNumberpdf, parNumber, pdfimage, modalImg, m
   img.setAttribute('alt', parNumber);
   const title = document.createElement('h3');
   const a = document.createElement('a');
-  a.setAttribute('class', 'btn btn-primary mt-3 mb-3 text-white');
+  a.setAttribute("class", "btn-search mt-3 mb-3 text-white");
   a.setAttribute('data-toggle', 'modal');
   a.setAttribute('data-target', '.bd-example-modal-lg');
   const h5 = document.createElement('h5');
@@ -21,10 +21,13 @@ const painSearch = (parNumberimg, parNumberpdf, parNumber, pdfimage, modalImg, m
   divCard.appendChild(img);
   divCard.appendChild(title);
   divCard.appendChild(a);
+
   html.appendChild(divColum);
   a.addEventListener('click', () => {
     modalp.setAttribute('href', parNumberpdf);
-    modalImg.setAttribute('src', pdfimage)
+    modalImg.setAttribute('src', pdfimage);
+    modalpimg.setAttribute('href',parNumberimgList);
+
   })
 }
 const userSearch = document.getElementById('equipment-search');
@@ -46,6 +49,11 @@ const search = (user) => {
                   console.log(arraySearchelement);
                   document.getElementById('tablaPar').innerHTML='';
                   paintData(snap.val().foto, snap.val().pdf, arraySearchelement, snap.val()['img-pdf'], document.getElementById('imagen'), document.getElementById('descarga'), document.getElementById('tablaPar'));
+                })
+              }
+              else{                  
+                firebase.database().ref(elementfirstKey).child(elementSecondKey).child(arraySearchelement).on("value", snap => {
+                  paintData(snap.val().foto,snap.val().imgs, snap.val().pdf, arraySearchelement, snap.val()['img-pdf'], document.getElementById('imagen'), document.getElementById('descarga'), document.getElementById('descargaimg'), document.getElementById('tablaPar'));
                 })
               }
             });

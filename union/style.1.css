@@ -1,6 +1,19 @@
-.btn-search{
+.tamaño h5{
+  font-family: 'gotham';
+  text-align: center;
+  font-weight: 100;
+
+}
+#lup-icon{
   cursor: pointer;
 }
+#saveSearch{
+  cursor: pointer;
+}
+.tamaño{
+  font-size: 30px;
+}
+
 .btn{
   background:#E2231A;
 }
@@ -143,3 +156,7 @@ p{
  text-align: center;
 }
 
+.btn-search{
+  background-color: yellow;
+  cursor: pointer;
+}
