@@ -30,6 +30,7 @@ const painSearch = (parNumberimg, parNumberpdf, parNumber, pdfimage, modalImg, m
 const userSearch = document.getElementById('equipment-search');
 const btnUserSearch = document.getElementById('btn-search');
 const returnspecifit=document.getElementById('returnspecifit');
+
 const search = (user) => {
   firebase.database().ref().on("value", snap => {
     let firstKey = Object.keys(snap.val());
@@ -54,6 +55,7 @@ const search = (user) => {
     });
   })
 }
+
 btnUserSearch.addEventListener('click', () => {
   document.getElementById('first').setAttribute('class', 'hidden');
   document.getElementById('second').setAttribute('class', 'hidden');

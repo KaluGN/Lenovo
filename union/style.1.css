@@ -130,7 +130,7 @@ p{
 }
 @font-face {
   font-family: 'gotham';
-  src: url(./typography/Gotham-Bold.otf);
+  src: url(../typography/Gotham-Bold.otf);
   font-weight: 700;
 }
 #note{
@@ -142,3 +142,4 @@ p{
  font-size: 500%;
  text-align: center;
 }
+
