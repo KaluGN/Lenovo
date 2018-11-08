@@ -16,7 +16,7 @@ const painSearch = (parNumberimg, parNumberimgList,parNumberpdf, parNumber, pdfi
   const h5 = document.createElement('h5');
   a.appendChild(h5);
   title.innerHTML = parNumber;
-  h5.innerHTML = 'click';
+  h5.innerHTML = 'Ver';
   divColum.appendChild(divCard);
   divCard.appendChild(img);
   divCard.appendChild(title);
@@ -46,16 +46,19 @@ const search = (user) => {
             arraySearch.forEach(arraySearchelement => {
               if (arraySearchelement === user) {
                 firebase.database().ref(elementfirstKey).child(elementSecondKey).child(arraySearchelement).on("value", snap => {
-                  console.log(arraySearchelement);
+                  console.log(snap.val());
+                  
                   document.getElementById('tablaPar').innerHTML='';
-                  paintData(snap.val().foto, snap.val().pdf, arraySearchelement, snap.val()['img-pdf'], document.getElementById('imagen'), document.getElementById('descarga'), document.getElementById('tablaPar'));
-                })
-              }
-              else{                  
-                firebase.database().ref(elementfirstKey).child(elementSecondKey).child(arraySearchelement).on("value", snap => {
                   paintData(snap.val().foto,snap.val().imgs, snap.val().pdf, arraySearchelement, snap.val()['img-pdf'], document.getElementById('imagen'), document.getElementById('descarga'), document.getElementById('descargaimg'), document.getElementById('tablaPar'));
-                })
+            })
               }
+              // else{                 
+              //   console.log('hola');
+                 
+              //   firebase.database().ref(elementfirstKey).child(elementSecondKey).child(arraySearchelement).on("value", snap => {
+              //     paintData(snap.val().foto,snap.val().imgs, snap.val().pdf, arraySearchelement, snap.val()['img-pdf'], document.getElementById('imagen'), document.getElementById('descarga'), document.getElementById('descargaimg'), document.getElementById('tablaPar'));
+              //   })
+              // }
             });
           })
         });
@@ -68,6 +71,8 @@ btnUserSearch.addEventListener('click', () => {
   document.getElementById('first').setAttribute('class', 'hidden');
   document.getElementById('second').setAttribute('class', 'hidden');
   document.getElementById('thrid').removeAttribute('class');
+  console.log(userSearch.value);
+  
   search(userSearch.value)
 })
 returnspecifit.addEventListener('click', () => {
